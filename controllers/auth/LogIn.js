@@ -4,21 +4,23 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const sqlLogin = "SELECT * FROM `users` WHERE `email` = ? AND `pass` = ?";
+const sqlLogin = "SELECT * FROM `users` WHERE `email` = ? AND `password` = ?";
 
 export function Login(req, res) {
     const { email, password } = req.body;
 
     if (!email || !password) {
-        return res.status(400).json({ message: "Username and password are required" });
+        return res.status(400).json({ message: "Email and password are required" });
     }
 
-    db.query(sqlLogin, [handler, password], (err, result) => {
+    db.query(sqlLogin, [email, password], (err, result) => {
+        console.log(email, password)
         if (err) {
+            console.log(err)
             return res.status(500).json({ message: "Database error", error: err.message });
         }
         if (result.length === 0) {
-            return res.status(401).json({ message: "Oops! Username and password Don't match" });
+            return res.status(401).json({ message: "Oops! Email and password Don't match" });
         }
         const user = result[0];
         try {
