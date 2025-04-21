@@ -38,7 +38,7 @@ const sqlCheckUser = `
 export function Register(req, res) {
     const { name, username, email, phone, password, role, semester } = req.body;
 
-    const createdAt = Date.now();  // Current timestamp for createdAt
+    const createdAt = Date.now().toString();  // Current timestamp for createdAt
     console.log(role, semester, createdAt)
 
     db.query(sqlCheckUser, [username, email], (err, result) => {
