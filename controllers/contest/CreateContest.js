@@ -1,7 +1,7 @@
 import db from '../../database/DB.js';
 
 const sql = {
-    insertcontestSql: "INSERT INTO contest (title, description) VALUES (?, ?)",
+    insertcontestSql: "INSERT INTO contest (title, description, end_time) VALUES (?, ?, ?)",
     insertProblemSql: "INSERT INTO problems (contest_id, title, description) VALUES (?, ?, ?)",
     insertTestCaseSql: "INSERT INTO test_cases (problem_id, input_text, expected_output) VALUES (?, ?, ?)"
 };
@@ -17,15 +17,15 @@ function queryAsync(sql, values) {
 }
 
 export default async function CreateContest(req, res) {
-    const { title, desc, problems, testcases } = req.body;
+    const { title, desc, end_time, problems, testcases } = req.body;
 
-    if (!title || !desc || !problems || !testcases) {
-        return res.status(400).json({ message: "Title, description, problems, and test cases are required." });
+    if (!title || !desc || !end_time || !problems || !testcases) {
+        return res.status(400).json({ message: "Title, description, end_time, problems, and test cases are required." });
     }
 
     try {
         // Insert contest
-        const contestResult = await queryAsync(sql.insertcontestSql, [title, desc]);
+        const contestResult = await queryAsync(sql.insertcontestSql, [title, desc, end_time]);
         const contestId = contestResult.insertId;
 
         // Insert each problem

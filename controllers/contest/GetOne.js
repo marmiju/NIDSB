@@ -1,5 +1,4 @@
 import db from '../../database/DB.js';
-
 function queryAsync(sql, values) {
     return new Promise((resolve, reject) => {
         db.query(sql, values, (err, result) => {
@@ -9,10 +8,11 @@ function queryAsync(sql, values) {
     });
 }
 
-export default async function GetAllContests(req, res) {
+export default async function GetOne(req, res) {
+    const { id } = req.body
     try {
         // Step 1: Get all contests
-        const contests = await queryAsync("SELECT * FROM contest ORDER BY id DESC");
+        const contests = await queryAsync("SELECT * FROM contest WHERE id = ?", [id]);
 
         // Step 2: For each contest, fetch its problems and test cases
         for (const contest of contests) {
@@ -33,4 +33,3 @@ export default async function GetAllContests(req, res) {
         res.status(500).json({ message: "Server error", error: err });
     }
 }
-

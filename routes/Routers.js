@@ -4,6 +4,7 @@ import { Login } from '../controllers/auth/LogIn.js';
 import getUsers from '../controllers/users/getUsers.js';
 import CreateContest from '../controllers/contest/CreateContest.js';
 import GetContest from '../controllers/contest/GetContest.js';
+import GetOne from '../controllers/contest/GetOne.js';
 
 const router = express.Router();
 
@@ -13,6 +14,7 @@ router.post('/login', Login);
 router.post('/users', getUsers);
 router.post('/contest', CreateContest)
 router.get('/contest', GetContest)
+router.post('/onecontest', GetOne)
 
 
 export default router;
