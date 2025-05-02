@@ -5,6 +5,7 @@ import getUsers from '../controllers/users/getUsers.js';
 import CreateContest from '../controllers/contest/CreateContest.js';
 import GetContest from '../controllers/contest/GetContest.js';
 import GetOne from '../controllers/contest/GetOne.js';
+import Submit from '../controllers/contest/Submit.js';
 
 const router = express.Router();
 
@@ -15,6 +16,9 @@ router.post('/users', getUsers);
 router.post('/contest', CreateContest)
 router.get('/contest', GetContest)
 router.post('/onecontest', GetOne)
+
+// Submission Code
+router.post('/submit', Submit)
 
 
 export default router;

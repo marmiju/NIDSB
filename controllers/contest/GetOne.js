@@ -18,10 +18,7 @@ export default async function GetOne(req, res) {
         for (const contest of contests) {
             const problems = await queryAsync("SELECT * FROM problems WHERE contest_id = ?", [contest.id]);
 
-            for (const problem of problems) {
-                const testcases = await queryAsync("SELECT * FROM test_cases WHERE problem_id = ?", [problem.id]);
-                problem.testcases = testcases;
-            }
+            
             contest.problems = problems;
         }
 

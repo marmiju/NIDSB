@@ -11,17 +11,14 @@ function queryAsync(sql, values) {
 
 export default async function GetAllContests(req, res) {
     try {
-        // Step 1: Get all contests
-        const contests = await queryAsync("SELECT * FROM contest ORDER BY id DESC");
+        
+        const contests = await queryAsync("SELECT * FROM contest ORDER BY end_time DESC");
+        console.log('hello')
+        console.log("Contests fetched:", contests.length);
 
         // Step 2: For each contest, fetch its problems and test cases
         for (const contest of contests) {
             const problems = await queryAsync("SELECT * FROM problems WHERE contest_id = ?", [contest.id]);
-
-            for (const problem of problems) {
-                const testcases = await queryAsync("SELECT * FROM test_cases WHERE problem_id = ?", [problem.id]);
-                problem.testcases = testcases;
-            }
             contest.problems = problems;
         }
 
