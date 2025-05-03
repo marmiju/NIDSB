@@ -6,6 +6,7 @@ import CreateContest from '../controllers/contest/CreateContest.js';
 import GetContest from '../controllers/contest/GetContest.js';
 import GetOne from '../controllers/contest/GetOne.js';
 import Submit from '../controllers/contest/Submit.js';
+import GetContestRanking from '../controllers/contest/ContestRanking.js';
 
 const router = express.Router();
 
@@ -19,6 +20,8 @@ router.post('/onecontest', GetOne)
 
 // Submission Code
 router.post('/submit', Submit)
+// Contest Ranking
+router.post('/contestRanking',GetContestRanking)
 
 
 export default router;

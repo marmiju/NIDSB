@@ -12,8 +12,8 @@ function queryAsync(sql, values) {
 export default async function GetAllContests(req, res) {
     try {
         
-        const contests = await queryAsync("SELECT * FROM contest ORDER BY end_time DESC");
         console.log('hello')
+        const contests = await queryAsync("SELECT * FROM contest ORDER BY end_time DESC");
         console.log("Contests fetched:", contests.length);
 
         // Step 2: For each contest, fetch its problems and test cases
