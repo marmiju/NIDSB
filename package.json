@@ -4,6 +4,7 @@
   "type": "module",
   "main": "server.js",
   "scripts": {
+    "build": "mkdir -p dist && cp -r src/* dist/",
     "start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,6 +17,7 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.2",
     "mysql2": "^3.12.0"
   }
 }
