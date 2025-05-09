@@ -1,11 +1,23 @@
-import db from '../../database/DB.js'
+import db from '../../database/DB.js';
+import getSocial from './getSocial.js';
 
-const gettingquery = `SELECT * FROM infoTable WHERE 1`
+const gettingQuery = `SELECT * FROM infoTable`;
 
 export function getInfo(req, res) {
-    
-    db.query(gettingquery, (err, result) => {
-        if (err) return res.status(500).json({ massage: 'failed to fetch Data', err })
-        res.status(200).json({message: 'Succesfully data fetches', result})
-    })
+    db.query(gettingQuery, async (err, result) => {
+        if (err) {
+            return res.status(500).json({ message: 'Failed to fetch data', error: err });
+        }
+
+        try {
+            const social = await getSocial();
+            res.status(200).json({
+                message: 'Successfully fetched data',
+                infoData: result,
+                socialData: social
+            });
+        } catch (error) {
+            res.status(500).json({ message: 'Failed to fetch social data', error });
+        }
+    });
 }
