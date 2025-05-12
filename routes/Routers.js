@@ -9,7 +9,8 @@ import Submit from '../controllers/contest/Submit.js';
 import GetContestRanking from '../controllers/contest/ContestRanking.js';
 import { inserSocialMedia } from '../controllers/InfoData/addSocial.js';
 import { getInfo } from '../controllers/InfoData/getInfoData.js';
-import { AddNotice } from '../controllers/notice/Notice.js';
+import { AddNotice } from '../controllers/notice/AddNotice.js';
+import { getNotices } from '../controllers/notice/Getnotice.js';
 
 const router = express.Router();
 
@@ -29,7 +30,8 @@ router.post('/addSocial', inserSocialMedia)
 router.get('/getinfo', getInfo)
 
 // notices
-router.post('/notice',AddNotice)
+router.post('/addnotice',AddNotice)
+router.get('/getnotices',getNotices)
 
 
 
