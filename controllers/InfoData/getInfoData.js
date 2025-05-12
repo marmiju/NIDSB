@@ -13,7 +13,7 @@ export function getInfo(req, res) {
             const social = await getSocial();
             res.status(200).json({
                 message: 'Successfully fetched data',
-                infoData: result,
+                infoData: result[0],
                 socialData: social
             });
         } catch (error) {
