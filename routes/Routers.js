@@ -9,6 +9,7 @@ import Submit from '../controllers/contest/Submit.js';
 import GetContestRanking from '../controllers/contest/ContestRanking.js';
 import { inserSocialMedia } from '../controllers/InfoData/addSocial.js';
 import { getInfo } from '../controllers/InfoData/getInfoData.js';
+import { AddNotice } from '../controllers/notice/Notice.js';
 
 const router = express.Router();
 
@@ -26,6 +27,9 @@ router.post('/submit', Submit)
 router.post('/contestRanking', GetContestRanking)
 router.post('/addSocial', inserSocialMedia)
 router.get('/getinfo', getInfo)
+
+// notices
+router.post('/notice',AddNotice)
 
 
 
