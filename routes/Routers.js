@@ -11,6 +11,7 @@ import { inserSocialMedia } from '../controllers/InfoData/addSocial.js';
 import { getInfo } from '../controllers/InfoData/getInfoData.js';
 import { AddNotice } from '../controllers/notice/AddNotice.js';
 import { getNotices } from '../controllers/notice/Getnotice.js';
+import getAbout from '../controllers/aboutData/getAboutData.js';
 
 const router = express.Router();
 
@@ -31,7 +32,10 @@ router.get('/getinfo', getInfo)
 
 // notices
 router.post('/addnotice',AddNotice)
-router.get('/getnotices',getNotices)
+router.get('/getnotices', getNotices)
+
+// get about data
+router.get('/getabout',getAbout)
 
 
 
