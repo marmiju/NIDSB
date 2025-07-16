@@ -10,7 +10,6 @@ app.use(bodyParser.json());
 
 const PORT = process.env.PORT || 5000;
 
-
 app.use('/api', router); // Mount the routes
 
 app.get('/', (req, res) => {
@@ -19,3 +18,10 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
+
+import axios from 'axios';
+
+axios.get('https://api.ipify.org?format=json')
+    .then(res => console.log('🛰️ Render Public IP:', res.data.ip))
+    .catch(err => console.error('IP Fetch Error:', err));
+
