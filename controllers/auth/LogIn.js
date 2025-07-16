@@ -29,12 +29,13 @@ export function Login(req, res) {
             const token = jwt.sign(
                 { userId: user.id, username: user.username },
                 process.env.JWT_SECRET,
-                { expiresIn: '30d' }
+                { expiresIn: '7d' }
             );
             User_id = user.id
             console.log(User_id)
             res.status(200).json({ message: "Login successful", token });
         } catch (err) {
+            console.error("Token generation error:", err);
             return res.status(500).json({ message: "Token generation error", error: err.message });
         }
     });

@@ -14,8 +14,8 @@ const PORT = process.env.PORT || 5000;
 app.use('/api', router); // Mount the routes
 
 app.get('/', (req, res) => {
-    res.send('Welcome to the NIDSB API');
+    res.send('Welcome to the NIDS API');
 });
-// app.listen(PORT, () => {
-//     console.log(`Server is running on http://localhost:${PORT}`);
-// });
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+});
