@@ -2,7 +2,7 @@ import db from "../../database/DB.js";
 
 const insertQuery = `insert into socialMedia (title,link,icon) VALUES (?,?,?)`
 
-export function inserSocialMedia(req, res){
+export default function inserSocialMedia(req, res){
     const { title, link, icon } = req.body;
 
     if (!title) {

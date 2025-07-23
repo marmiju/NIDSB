@@ -3,7 +3,7 @@ import getSocial from './getSocial.js';
 
 const gettingQuery = `SELECT * FROM infoTable`;
 
-export function getInfo(req, res) {
+export default function getInfo(req, res) {
     db.query(gettingQuery, async (err, result) => {
         if (err) {
             return res.status(500).json({ message: 'Failed to fetch data', error: err });

@@ -35,7 +35,7 @@ const sqlCheckUser = `
 //     });
 // }
 
-export function Register(req, res) {
+export default function Register(req, res) {
     const { name, username, email, phone, password, role, semester } = req.body;
 
     const createdAt = Date.now().toString();  // Current timestamp for createdAt

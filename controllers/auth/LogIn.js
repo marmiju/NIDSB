@@ -8,7 +8,7 @@ dotenv.config();
 
 const sqlLogin = "SELECT * FROM `users` WHERE `email` = ? AND `password` = ?";
 
-export function Login(req, res) {
+export default function Login(req, res) {
     const { email, password } = req.body;
 
     if (!email || !password) {

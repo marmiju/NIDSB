@@ -3,7 +3,7 @@ import db from "../../database/DB.js";
 // SELECT * FROM `notices` WHERE 1
 const getQuery = `select * from notices`
 
-export function getNotices(req, res) {
+export default function getNotices(req, res) {
 
 
     try {

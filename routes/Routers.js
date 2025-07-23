@@ -1,17 +1,17 @@
 import express from 'express';
-import { Register } from '../controllers/auth/register.js';
-import { Login } from '../controllers/auth/LogIn.js';
+import  Register  from '../controllers/auth/register.js';
+import  Login  from '../controllers/auth/LogIn.js';
 import getUsers from '../controllers/users/getUsers.js';
 import CreateContest from '../controllers/contest/CreateContest.js';
 import GetContest from '../controllers/contest/GetContest.js';
 import GetOne from '../controllers/contest/GetOne.js';
 import Submit from '../controllers/contest/Submit.js';
 import GetContestRanking from '../controllers/contest/ContestRanking.js';
-import { inserSocialMedia } from '../controllers/InfoData/addSocial.js';
-import { getInfo } from '../controllers/InfoData/getInfoData.js';
-import { AddNotice } from '../controllers/notice/AddNotice.js';
-import { getNotices } from '../controllers/notice/Getnotice.js';
+import  inserSocialMedia  from '../controllers/InfoData/addSocial.js';
+import  getInfo  from '../controllers/InfoData/getInfoData.js';
+import  getNotices  from '../controllers/notice/Getnotice.js';
 import getAbout from '../controllers/aboutData/getAboutData.js';
+import AddNotice from '../controllers/notice/AddNotice.js';
 
 const router = express.Router();
 

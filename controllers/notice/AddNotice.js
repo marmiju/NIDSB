@@ -3,7 +3,7 @@ import db from "../../database/DB.js";
 // INSERT INTO `notices`(`id`, `title`, `description`, `author`, `date`) VALUES ('[value-1]','[value-2]','[value-3]','[value-4]','[value-5]')
 const insertQuery = `insert into notices(title,description,author,date) values (?,?,?,?)`
 
-export function AddNotice(req, res) {
+export default function AddNotice(req, res) {
     const { title, desc, author } = req.body
     if (!title | !desc | !author) return res.json({ message: 'required all field' })
         const now = new Date();
