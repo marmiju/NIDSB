@@ -1,20 +1,16 @@
-import db from "../../database/DB.js";
+const db = require('../../database/DB');
 
-// SELECT * FROM `notices` WHERE 1
-const getQuery = `select * from notices`
+const getQuery = `select * from notices`;
 
-export default function getNotices(req, res) {
-
-
+function getNotices(req, res) {
     try {
-        
         db.query(getQuery, (err, result) => {
-            if (err) return res.status(500).json({ message: 'failed to fetch data',err })   
-                res.status(200).json({result })
-            })
+            if (err) return res.status(500).json({ message: 'Failed to fetch data', err });
+            res.status(200).json({ result });
+        });
     } catch (c) {
-         res.json({c})
-        }
-    
-    
+        res.status(500).json({ error: c });
+    }
 }
+
+module.exports = getNotices;

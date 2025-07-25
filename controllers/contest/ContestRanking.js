@@ -1,8 +1,7 @@
-import db from "../../database/DB.js";
+const db = require('../../database/DB');
 
-export default function GetContestRanking(req, res) {
+function GetContestRanking(req, res) {
     const { contest_id } = req.body;
-
 
     const query = `
        SELECT 
@@ -61,3 +60,5 @@ export default function GetContestRanking(req, res) {
         });
     });
 }
+
+module.exports = GetContestRanking;

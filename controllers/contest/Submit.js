@@ -1,10 +1,9 @@
-import db from '../../database/DB.js';
-import jwt from 'jsonwebtoken';
+const db = require('../../database/DB');
+const jwt = require('jsonwebtoken');
 
+const submitsql = "INSERT INTO submission (user_id, contest_id, problem_id, isAccepted, point) VALUES (?, ?, ?, ?, ?)";
 
-const submitsql = "INSERT INTO submission (user_id,contest_id,problem_id,isAccepted,point) VALUES (?,?,?,?,?)"
-
-export default function Submit(req, res) {
+function Submit(req, res) {
     const { token, contest_id, problem_id, isAccepted } = req.body;
 
     if (!token) {
@@ -13,9 +12,9 @@ export default function Submit(req, res) {
 
     let decode;
     try {
-        decode = jwt.verify(token, process.env.JWT_SECRET); // use your actual secret
+        decode = jwt.verify(token, process.env.JWT_SECRET); // your secret
     } catch (err) {
-        console.log('hello')
+        console.log('hello');
         return res.status(403).json({ message: "Invalid or expired token! Please Log In Again \n this Data Not Stored" });
     }
 
@@ -39,3 +38,4 @@ export default function Submit(req, res) {
     }
 }
 
+module.exports = Submit;

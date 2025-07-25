@@ -1,9 +1,9 @@
-import db from '../../database/DB.js';
-import getSocial from './getSocial.js';
+const db = require('../../database/DB');
+const getSocial = require('./getSocial');
 
 const gettingQuery = `SELECT * FROM infoTable`;
 
-export default function getInfo(req, res) {
+function getInfo(req, res) {
     db.query(gettingQuery, async (err, result) => {
         if (err) {
             return res.status(500).json({ message: 'Failed to fetch data', error: err });
@@ -21,3 +21,5 @@ export default function getInfo(req, res) {
         }
     });
 }
+
+module.exports = getInfo;

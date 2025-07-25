@@ -1,8 +1,8 @@
-import db from '../../database/DB.js';
+const db = require('../../database/DB');
 
 const gettingQuery = `SELECT * FROM socialMedia`;
 
-export default function getSocial() {
+function getSocial() {
     return new Promise((resolve, reject) => {
         db.query(gettingQuery, (err, result) => {
             if (err) {
@@ -13,3 +13,5 @@ export default function getSocial() {
         });
     });
 }
+
+module.exports = getSocial;

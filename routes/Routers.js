@@ -1,17 +1,18 @@
-import express from 'express';
-import  Register  from '../controllers/auth/register.js';
-import  Login  from '../controllers/auth/LogIn.js';
-import getUsers from '../controllers/users/getUsers.js';
-import CreateContest from '../controllers/contest/CreateContest.js';
-import GetContest from '../controllers/contest/GetContest.js';
-import GetOne from '../controllers/contest/GetOne.js';
-import Submit from '../controllers/contest/Submit.js';
-import GetContestRanking from '../controllers/contest/ContestRanking.js';
-import  inserSocialMedia  from '../controllers/InfoData/addSocial.js';
-import  getInfo  from '../controllers/InfoData/getInfoData.js';
-import  getNotices  from '../controllers/notice/Getnotice.js';
-import getAbout from '../controllers/aboutData/getAboutData.js';
-import AddNotice from '../controllers/notice/AddNotice.js';
+const express = require('express');
+
+const Register = require('../controllers/auth/register');
+const Login = require('../controllers/auth/LogIn');
+const getUsers = require('../controllers/users/getUsers');
+const CreateContest = require('../controllers/contest/CreateContest');
+const GetContest = require('../controllers/contest/GetContest');
+const GetOne = require('../controllers/contest/GetOne');
+const Submit = require('../controllers/contest/Submit');
+const GetContestRanking = require('../controllers/contest/ContestRanking');
+const inserSocialMedia = require('../controllers/InfoData/addSocial');
+const getInfo = require('../controllers/InfoData/getInfoData');
+const getNotices = require('../controllers/notice/Getnotice');
+const getAbout = require('../controllers/aboutData/getAboutData');
+const AddNotice = require('../controllers/notice/AddNotice');
 
 const router = express.Router();
 
@@ -19,24 +20,25 @@ const router = express.Router();
 router.post('/register', Register);
 router.post('/login', Login);
 router.post('/users', getUsers);
-router.post('/contest', CreateContest)
-router.get('/contest', GetContest)
-router.post('/onecontest', GetOne)
+router.post('/contest', CreateContest);
+router.get('/contest', GetContest);
+router.post('/onecontest', GetOne);
 
 // Submission Code
-router.post('/submit', Submit)
+router.post('/submit', Submit);
+
 // Contest Ranking
-router.post('/contestRanking', GetContestRanking)
-router.post('/addSocial', inserSocialMedia)
-router.get('/getinfo', getInfo)
+router.post('/contestRanking', GetContestRanking);
 
-// notices
-router.post('/addnotice',AddNotice)
-router.get('/getnotices', getNotices)
+// Social Media
+router.post('/addSocial', inserSocialMedia);
+router.get('/getinfo', getInfo);
 
-// get about data
-router.get('/getabout',getAbout)
+// Notices
+router.post('/addnotice', AddNotice);
+router.get('/getnotices', getNotices);
 
+// About Info
+router.get('/getabout', getAbout);
 
-
-export default router;
+module.exports = router;
