@@ -1,6 +1,5 @@
-// /controllers/auth/Register.js
-
 const db = require('../../database/DB.js');
+const bcrypt = require('bcrypt'); // spelling ঠিক করলাম
 
 const sqlInsertUser = `
   INSERT INTO users (name, username, email, phone, password, role, status, semester, createdAt)
@@ -37,29 +36,34 @@ function Register(req, res) {
     }
 
     const userRole = role === 'guest' ? 'client' : role;
-    const userStatus = userRole === 'client' ? 'approved' : 'pending';
+    const userStatus = 'approved';
 
-    const newUser = [
-      name,
-      username,
-      email,
-      phone,
-      password,
-      userRole,
-      userStatus,
-      semester || '',
-      createdAt
-    ];
+    // Hash password using then()
+    bcrypt.hash(password, 10).then((hashedPassword) => {
+      const newUser = [
+        name,
+        username,
+        email,
+        phone,
+        hashedPassword,
+        userRole,
+        userStatus,
+        semester || '',
+        createdAt
+      ];
 
-    db.query(sqlInsertUser, newUser, (err, result) => {
-      if (err) {
-        return res.status(500).json({ message: 'Failed to register user', error: err.message });
-      }
+      db.query(sqlInsertUser, newUser, (err, result) => {
+        if (err) {
+          return res.status(500).json({ message: 'Failed to register user', error: err.message });
+        }
 
-      return res.status(201).json({
-        message: 'Account created successfully!',
-        userId: result.insertId
+        return res.status(201).json({
+          message: 'Account created successfully!',
+          userId: result.insertId
+        });
       });
+    }).catch((hashErr) => {
+      return res.status(500).json({ message: 'Password hashing failed', error: hashErr.message });
     });
   });
 }
